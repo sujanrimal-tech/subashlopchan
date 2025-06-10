@@ -1,11 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Hero Image Gallery Logic ---
+    const images = document.querySelectorAll('.hero-image');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    function showImage(index) {
+        // Hide all images
+        images.forEach(img => img.classList.remove('active'));
+        // Show the correct image
+        images[index].classList.add('active');
+    }
+
+    if (images.length > 0) {
+        // Show the first image initially
+        showImage(currentIndex);
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+    }
+
+
     // --- Smooth Scroll-Reveal Animation ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: stop observing after it's visible so it doesn't re-animate
                 observer.unobserve(entry.target); 
             }
         });
@@ -21,22 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
     window.onscroll = () => {
-        if (scrollTopBtn) {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollTopBtn.style.display = 'block';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
+        if (scrollTopBtn && (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300)) {
+            scrollTopBtn.style.display = 'block';
+        } else if (scrollTopBtn) {
+            scrollTopBtn.style.display = 'none';
         }
     };
     
-    // The function is now inside the event listener for better scope management
     if(scrollTopBtn) {
         scrollTopBtn.onclick = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
     }
-
 
     // --- Survey Form Submission Logic ---
     const surveyForm = document.getElementById('energy-survey-form');
@@ -45,19 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (surveyForm) {
         surveyForm.addEventListener('submit', (event) => {
-            // 1. Prevent the default browser action of reloading the page
             event.preventDefault();
-
-            // In a real application, you would send this data to a server.
-            // For this portfolio, we'll just show a thank you message.
             const formData = new FormData(surveyForm);
-            const selectedSource = formData.get('energy_source');
-            const comments = formData.get('comments');
-            console.log('Survey Submitted!');
-            console.log('Selected Source:', selectedSource);
-            console.log('Comments:', comments);
+            console.log('Survey Submitted:', Object.fromEntries(formData));
 
-            // 2. Hide the form and show the thank you message
             if (surveyContainer && thankYouMessage) {
                 surveyForm.style.display = 'none';
                 thankYouMessage.style.display = 'block';
