@@ -1,73 +1,41 @@
-$(document).ready(function(){
-    $(window).scroll(function(){
-        // sticky navbar on scroll script
-        if(this.scrollY > 20){
-            $('.navbar').addClass("sticky");
-        }else{
-            $('.navbar').removeClass("sticky");
-        }
-        
-        // scroll-up button show/hide script
-        if(this.scrollY > 500){
-            $('.scroll-up-btn').addClass("show");
-        }else{
-            $('.scroll-up-btn').removeClass("show");
-        }
-    });
+document.addEventListener('DOMContentLoaded', () => {
 
-    // slide-up script
-    $('.scroll-up-btn').click(function(){
-        $('html').animate({scrollTop: 0});
-        // removing smooth scroll on slide-up button click
-        $('html').css("scrollBehavior", "auto");
-    });
-
-    $('.navbar .menu li a').click(function(){
-        // applying again smooth scroll on menu items click
-        $('html').css("scrollBehavior", "smooth");
-    });
-
-    // toggle menu/navbar script
-    $('.menu-btn').click(function(){
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
-    });
-
-    // typing text animation script
-    var typed = new Typed(".typing", {
-        strings: ["YouTuber", "Developer", "Blogger", "Designer", "Freelancer","Seller","Gamer"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
-
-    var typed = new Typed(".typing-2", {
-        strings: ["YouTuber", "Developer", "Blogger", "Designer", "Freelancer","Seller","Gamer"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
-
-    // owl carousel script
-    $('.carousel').owlCarousel({
-        margin: 20,
-        loop: true,
-        autoplay: true,
-        autoplayTimeOut: 2000,
-        autoplayHoverPause: true,
-        responsive: {
-            0:{
-                items: 1,
-                nav: false
-            },
-            600:{
-                items: 2,
-                nav: false
-            },
-            1000:{
-                items: 3,
-                nav: false
+    // --- Scroll-Reveal Animation Script ---
+    // Sets up an observer to watch for when elements with the 'scroll-reveal' class enter the viewport.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the element is intersecting (visible), add the 'visible' class to trigger the animation.
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
-        }
+        });
+    }, {
+        threshold: 0.1 // Trigger the animation when 10% of the element is visible.
     });
+
+    // Find all elements with the 'scroll-reveal' class and have the observer watch them.
+    document.querySelectorAll('.scroll-reveal').forEach(section => {
+        observer.observe(section);
+    });
+
+    // --- Scroll-to-Top Button Script ---
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    
+    // Listen for scroll events on the window.
+    window.onscroll = () => {
+        // If the user has scrolled down more than 300 pixels, show the button. Otherwise, hide it.
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollTopBtn.style.display = 'block';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    };
 });
+
+// This function is called by the 'onclick' attribute on the scroll-to-top button in the HTML.
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // This makes the scroll action smooth and animated.
+    });
+};
