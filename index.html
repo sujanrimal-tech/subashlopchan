@@ -53,12 +53,24 @@
                             </a>
                         </div>
                     </div>
-                   <div class="hidden md:block">
-    <img src="images/subash.jpg" alt="Portrait of Subash Lopchan" class="rounded-2xl shadow-2xl object-cover w-full h-full">
-</div>
+                    <!-- === START OF NEW IMAGE GALLERY === -->
+                    <div class="hidden md:block hero-image-container">
+                        <img src="images/portrait-1.png" alt="Subash Lopchan as a Control Room Specialist" class="hero-image active">
+                        <img src="images/portrait-2.png" alt="Subash Lopchan as a Field Engineer" class="hero-image">
+                        <img src="images/portrait-3.png" alt="Subash Lopchan in a modern professional portrait" class="hero-image">
+                        
+                        <button id="prevBtn" class="gallery-nav-btn left-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+                        </button>
+                        <button id="nextBtn" class="gallery-nav-btn right-4">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                        </button>
+                    </div>
+                    <!-- === END OF NEW IMAGE GALLERY === -->
                 </div>
             </section>
-
+            
+            <!-- The rest of the sections (About, Skills, etc.) remain exactly the same. -->
             <!-- About Me Section -->
             <section id="about" class="py-24 scroll-reveal">
                  <div class="text-center max-w-3xl mx-auto">
