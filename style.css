@@ -1,22 +1,35 @@
-/* --- General Body and Font Styling --- */
+/* ======================================== */
+/* ---      PROFESSIONAL LIGHT THEME      --- */
+/* ======================================== */
+
 body {
     font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
-    background-color: #020617; /* This matches Tailwind's slate-950 color */
+    background-color: #f8fafc; /* very light gray */
+    color: #475569; /* dark gray text */
 }
 
-/* --- Special Effects --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #0f172a; /* very dark gray for headings */
+}
+
 .text-glow {
-    text-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
+    text-shadow: 0 0 10px rgba(14, 116, 144, 0.2);
 }
 
-/* --- Scroll-to-Top Button --- */
 #scrollTopBtn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    display: none; /* Hidden by default, made visible by JavaScript */
+    display: none;
     z-index: 100;
+}
+
+/* --- Section Animation on Scroll --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .scroll-reveal.visible {
@@ -24,15 +37,23 @@ body {
     transform: translateY(0);
 }
 
-/* --- Experience Timeline --- */
 .timeline-item::before {
     content: '';
     position: absolute;
     width: 1rem;
     height: 1rem;
-    background-color: #0891b2; /* Tailwind's cyan-600 */
+    background-color: #0891b2; /* cyan-600 */
     border-radius: 9999px;
-    left: -3.25rem; /* Positions the dot outside the timeline bar */
+    left: -3.25rem;
     top: 0.25rem;
-    border: 3px solid #1e293b; /* Tailwind's slate-800 */
+    border: 3px solid #e2e8f0; /* slate-200 */
 }
+
+/* --- Tailwind CSS Overrides for Light Theme --- */
+/* These ensure Tailwind classes work correctly without dark mode */
+
+.border-slate-800 { border-color: #cbd5e1 !important; }
+.bg-slate-800\/50 { background-color: #ffffff; --tw-bg-opacity: 1; }
+.border-slate-700 { border-color: #e2e8f0; }
+.text-slate-300, .text-slate-400 { color: #475569; }
+.text-white { color: #0f172a !important; }
