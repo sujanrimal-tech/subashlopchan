@@ -1,59 +1,152 @@
-/* ======================================== */
-/* ---      PROFESSIONAL LIGHT THEME      --- */
-/* ======================================== */
+/* ========================================= */
+/* --- "MODERN BLUEPRINT" THEME STYLES --- */
+/* ========================================= */
 
+/* --- Base & Font Styling --- */
 body {
     font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
-    background-color: #f8fafc; /* very light gray */
-    color: #475569; /* dark gray text */
+    color: #475569; /* slate-600 */
+
+    /* The subtle grid background */
+    background-color: #f8fafc; /* slate-50 */
+    background-image: 
+        linear-gradient(rgba(100, 116, 139, 0.1) 1px, transparent 1px),
+        linear-gradient(to right, rgba(100, 116, 139, 0.1) 1px, transparent 1px);
+    background-size: 2rem 2rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #0f172a; /* very dark gray for headings */
+/* --- Reusable Component Styles --- */
+.section-title {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 800;
+    color: #0f172a; /* slate-900 */
 }
 
-.text-glow {
-    text-shadow: 0 0 10px rgba(14, 116, 144, 0.2);
+.section-subtitle {
+    margin-top: 1rem;
+    font-size: 1.125rem; /* 18px */
+    color: #475569; /* slate-600 */
+    line-height: 1.75;
 }
 
+.card-title {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+    color: #1e293b; /* slate-800 */
+}
+
+.card-text {
+    margin-top: 0.5rem;
+    color: #475569; /* slate-600 */
+    font-size: 0.95rem;
+}
+
+.card-list {
+    margin-top: 1rem;
+    list-style-position: inside;
+    list-style-type: disc;
+    color: #475569; /* slate-600 */
+    space-y: 0.5rem;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0; /* slate-200 */
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2563eb; /* blue-600 */
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* --- Card Styling (Frosted Glass Effect) --- */
+.skill-card, .project-card, .activity-card, .survey-form, .thank-you-message {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8); /* slate-200 with transparency */
+    border-radius: 1rem; /* 16px */
+    padding: 2rem; /* 32px */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover, .project-card:hover, .activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.03), 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Experience Timeline --- */
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    background-color: #2563eb; /* blue-600 */
+    border-radius: 9999px;
+    left: -3.65rem;
+    top: 0.125rem;
+    border: 5px solid #ffffff;
+    box-shadow: 0 0 0 2px #cbd5e1; /* slate-300 */
+}
+
+.item-title { font-size: 1.25rem; font-weight: 600; color: #0f172a; }
+.item-subtitle { font-weight: 600; color: #475569; }
+.item-date { font-size: 0.875rem; color: #64748b; margin-bottom: 1rem; }
+.item-list { list-style-position: inside; list-style-type: '✓  '; padding-left: 0.5rem; space-y: 0.75rem; }
+
+/* --- Survey Form --- */
+.form-label { display: block; font-weight: 600; color: #334155; margin-bottom: 0.75rem; }
+.form-radio-label { display: flex; align-items: center; cursor: pointer; padding: 0.75rem; border-radius: 0.5rem; transition: background-color 0.2s; }
+.form-radio-label:hover { background-color: #f1f5f9; }
+.form-radio { width: 1.25rem; height: 1.25rem; margin-right: 0.75rem; accent-color: #2563eb; }
+.form-textarea { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; transition: border-color 0.2s, box-shadow 0.2s; }
+.form-textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); }
+.thank-you-message { text-align: center; }
+
+/* --- Scroll-to-Top Button --- */
 #scrollTopBtn {
     position: fixed;
     bottom: 20px;
     right: 20px;
     display: none;
     z-index: 100;
-}
-
-/* --- Section Animation on Scroll --- */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    width: 1rem;
-    height: 1rem;
-    background-color: #0891b2; /* cyan-600 */
+    background-color: #2563eb; /* blue-600 */
+    color: white;
+    padding: 0.75rem; /* 12px */
     border-radius: 9999px;
-    left: -3.25rem;
-    top: 0.25rem;
-    border: 3px solid #e2e8f0; /* slate-200 */
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-/* --- Tailwind CSS Overrides for Light Theme --- */
-/* These ensure Tailwind classes work correctly without dark mode */
+#scrollTopBtn:hover {
+    background-color: #1d4ed8; /* blue-700 */
+    transform: scale(1.1);
+}
 
-.border-slate-800 { border-color: #cbd5e1 !important; }
-.bg-slate-800\/50 { background-color: #ffffff; --tw-bg-opacity: 1; }
-.border-slate-700 { border-color: #e2e8f0; }
-.text-slate-300, .text-slate-400 { color: #475569; }
-.text-white { color: #0f172a !important; }
+/* --- Scroll Animation --- */
+.scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
